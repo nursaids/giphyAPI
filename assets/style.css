@@ -1,0 +1,28 @@
+body{
+background-color: rgb(214, 194, 194);
+padding: 20px;
+}
+
+
+#gify-form{
+float: right;
+margin: 0 auto;
+padding: 20px;
+}
+
+#images-view{
+float: left;
+padding-top: 20px;
+width:60%;
+}
+
+.button-list{
+
+float: left;
+padding-top: 20px;
+margin: 0 auto;
+
+
+
+}
+
