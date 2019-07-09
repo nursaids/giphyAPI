@@ -1,49 +1,33 @@
 <!DOCTYPE html>
-<html lang="en-us">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-
-    <title> GifStatic </title>
+    <meta charset="UTF-16">
+    <title>giphy</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-
 <body>
+    <div class="container main">
+        <div class="row mt-4">
+            <div class="col-md-12 d-flex justify-content-left button-display flex-wrap">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-9 gif-display"></div>
+            <div class="col-md-3">
+                <h4>Add an Animal</h4>
+                <input type="text" class="form-control mt-4" id="userText">
+                <button type="button" class="btn btn-danger mt-4" id = 'searchButton'>Search</button>
+            </div>
+        </div>
+    </div>
 
-
-  
-<div class ="button-list">
-   
-
-</div>
-
-
-
-<form id="gify-form">
-        
-    <label for="gify-input"><h4>Add a Gify!</h4></label>
-    <br>
     
-    <input type="text" id="gify-input">
-        
-  
-        
-    <input id="gify-btn" type="submit" value="Submit">
 
-</form>
-  
-   
-<div id="images-view"></div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="assets/app.js"></script>
-
-
-
+    <script type="text/javascript" src="assets/app.js">
+    </script>
 </body>
-
-</html>

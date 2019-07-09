@@ -1,89 +1,67 @@
-// create array for gify button, so it will show pictures of animawhen yoiu click it
-// create container and push pictures to div
-// create searchbox to add animal button to animals array
-// make giphy images to spot when you click on gif images
+var gifCount = 0;
+var topics = ['Cat', 'Dog', 'Rabbit', 'Hamster', 'Bird', 'Turtles'];
 
-var gifs = ["puppys", "movies", "unicorns", "cats", "rainbow", "birds"];
-
-function displayGify() {
-
-  var gify = $(this).attr("data-name")
-
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gify + "&api_key=dc6zaTOxFJmzC&limit=10"
+function createGif(input, amount) {
 
 
+  var query = 'https://api.giphy.com/v1/gifs/random?tag=' + input + '&rating=pg&api_key=ihqeBjzMFNuSM45AZMn5FtDCn3CNpnvJ';
+
+  for (let i = 0; i < amount; i++) {
+    $.ajax({
+      url: query,
+      method: 'GET'
+    }).then(function (response) {
+      console.log(response);
+      var $div = $('<div class = "thing card bg-light border-secondary">');
+      var $panelHeader = $('<div class = card-header>');
+      var $panelBody = $('<div class = card-text>');
+      $div.append($panelHeader);
+      $div.append($panelBody);
+      var $img = $('<img>');
+      $panelHeader.text("Rating: ");
+      $img.attr('src', response.data.images.fixed_height_still.url).attr('data', response.data.images.fixed_height.url);
+      $img.appendTo($panelBody);
+      $div.prependTo('.gif-display');
 
 
-  $.ajax({
-    url: queryURL,
-    method: "GET"
 
-  }).then(function (response) {
-
-    var gifyDiv = $("<div id = 'gify'>");
-
-    var rating = response.Rated;
-
-    var pOne = $("<p>").text("Rated: " + rating);
-
-    gifyDiv.append(pOne);
-
-    var imgURL = response.data.image_original_url;
-
-    var image = $("<img>").attr("src", imgURL);
-
-    $("#buttons-view").prepend(gifyDiv);
-  });
-
-};
-
-function renderButtons() {
+      $.ajax({
+        url: 'http://api.giphy.com/v1/gifs/' + response.data.id + '?api_key=ihqeBjzMFNuSM45AZMn5FtDCn3CNpnvJ',
+        method: 'GET'
+      }).then(function (SecondResponse) {
+        $panelHeader.text("Rating: " + SecondResponse.data.rating);
+      })
 
 
-  $("#buttons-view").empty();
 
+      $($img).on('click', function () {
+        var $this = $(this);
+        var temp = $this.attr('src');
+        $this.attr('src', $this.attr('data'));
+        $this.attr('data', temp);
+      })
 
-  for (var i = 0; i < gifs.length; i++) {
-
-
-    var a = $("<button>");
-
-    a.addClass("gify-btn");
-
-    a.attr("data-name", gifs[i]);
-
-    a.text(gifs[i]);
-
-    
-
-    $(".button-list").append(a);
-
-    
+      gifCount++;
+    });
   }
-
-  
-  // $(".gify-btn").on("click", 
 }
 
-renderButtons();
+$('#searchButton').on('click', function () {
+  var search = $('#userText').val();
+  var button = $('<button>').attr('type', 'button').addClass('btn btn-info topButton mt-1').attr('data', search).text(search);
+  $('.button-display').append(button);
+  $(button).on('click', function () {
+    createGif($(this).attr('data'), 3);
+  })
 
+})
 
-$("#add-gify").on("click", function (event) {
-  event.preventDefault();
+for (let i = 0; i < topics.length; i++) {
+  const element = topics[i];
+  var temp = $('<button type="button" class="btn btn-info topButton initialButton mt-1" data = ' + element + '>' + element + '</button>');
+  temp.appendTo($('.button-display'));
+}
 
-  var gify = $("#gify-input").val().trim();
-
-
-  gify.push(gifs);
-
-
-  renderButtons();
+$('.initialButton').on('click', function () {
+  createGif($(this).attr('data'), 3);
 });
-
-
-$(document).on("click", "#gify-btn", displayGify);
-
-
-
-renderButtons();
-
