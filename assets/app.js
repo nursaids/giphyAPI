@@ -1,5 +1,5 @@
 var gifCount = 0;
-var topics = ['Cat', 'Dog', 'Rabbit', 'Hamster', 'Bird', 'Turtles'];
+var topics = ['BMW', 'mercedes', 'audi', 'porsche', 'acura', 'lexus'];
 
 function createGif(input, amount) {
 
